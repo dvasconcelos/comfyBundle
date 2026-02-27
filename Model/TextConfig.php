@@ -15,59 +15,16 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class TextConfig implements ConfigInterface
 {
-    /** @var ConfigManagerInterface */
-    protected $confgManager;
-
-    /** @var ValidatorInterface */
-    protected $validator;
-
-    /** @var string */
-    protected $path;
-
-    /** @var string */
-    private $name;
-
-    /** @var string */
-    private $description;
-
-    /** @var int */
-    private $scope;
-
-    /** @var bool */
-    private $isHidden;
-
-    /** @var string|null */
-    private $defaultValue;
-
-    /**
-     * AbstractConfig constructor.
-     * @param ConfigManagerInterface $configManager
-     * @param ValidatorInterface $validator
-     * @param string $path
-     * @param string $name
-     * @param string $description
-     * @param int $scope
-     * @param string|null $defaultValue
-     * @param bool $isHidden
-     */
     public function __construct(
-        ConfigManagerInterface $configManager,
-        ValidatorInterface $validator,
-        string $path,
-        string $name,
-        string $description = "",
-        int $scope = PHP_INT_MAX,
-        ?string $defaultValue = null,
-        bool $isHidden = false
+        protected ConfigManagerInterface $configManager,
+        protected ValidatorInterface $validator,
+        protected string $path,
+        private string $name,
+        private string $description = "",
+        private int $scope = PHP_INT_MAX,
+        private ?string $defaultValue = null,
+        private bool $isHidden = false
     ) {
-        $this->confgManager = $configManager;
-        $this->validator = $validator;
-        $this->path = $path;
-        $this->name = $name;
-        $this->description = $description;
-        $this->scope = $scope;
-        $this->isHidden = $isHidden;
-        $this->defaultValue = $defaultValue;
     }
 
     /**
